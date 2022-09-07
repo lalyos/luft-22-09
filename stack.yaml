@@ -9,10 +9,34 @@ services:
       - 30002:80
     deploy:
       replicas: 1
+  coffee:
+    image: lalyos/lunch:v10
+    ports:
+      - 30004:80
+    environment:
+    - TITLE_FILE=/title
+    - COLOR_FILE=/color
+    - BODY_FILE=/body
+    configs:
+    - source: title
+      target: /title
+    - source: color
+      target: /color
+    - source: body
+      target: /body
   vizualiser:
     image: dockersamples/visualizer
     ports:
     - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      
+configs:
+  body: 
+    external: true
+    name: ${ENV:-qa}-body
+  color:
+    external: true
+    name: ${ENV:-qa}-color
+  title: 
+    external: true
+    name: ${ENV:-qa}-title
