@@ -9,4 +9,10 @@ services:
       - 30002:80
     deploy:
       replicas: 1
+  vizualiser:
+    image: dockersamples/visualizer
+    ports:
+    - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       
