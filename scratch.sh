@@ -20,3 +20,8 @@ PGPASSWORD=secret psql -U postgres -h db -c 'select * from vip;'
 docker network create blue
 
 docker run --name front --net=blue  -it cmd.cat/bash/dig/curl/psql
+
+
+docker config create dev-title - <<< "[DEV] COFFE BREAK"
+docker config create dev-color - <<< "tan"
+docker config create dev-body - <<< "Soon ..."
