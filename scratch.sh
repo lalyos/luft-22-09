@@ -25,3 +25,10 @@ docker run --name front --net=blue  -it cmd.cat/bash/dig/curl/psql
 docker config create dev-title - <<< "[DEV] COFFE BREAK"
 docker config create dev-color - <<< "tan"
 docker config create dev-body - <<< "Soon ..."
+
+docker config create prod-title - <<< "[PROD] COFFE BREAK"
+docker config create prod-color - <<< "plum"
+docker config create prod-body - <<< "at 12:20"
+
+
+docker secret create prod-body - <<< "Top secret thing ..."
