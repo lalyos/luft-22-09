@@ -23,12 +23,18 @@ services:
     ports:
       - 80
     environment:
-      - VIRTUAL_HOST=dinner.vcap.me
-      - TITLE=Dinner
-      - COLOR=yellow
-  front:
-    image: cmd.cat/bash/dig/curl/psql
-    command: sleep 9999
+      - VIRTUAL_HOST=lunch.vcap.me
+      - TITLE=LunchBreak
+      - COLOR=lightgreen
+
+  coffe:
+    build: .
+    ports:
+      - 80
+    environment:
+      - VIRTUAL_HOST=coffe.vcap.me
+      - TITLE=CoffeBreak
+      - COLOR=tan
 
 volumes:
   vipvol:
