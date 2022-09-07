@@ -3,8 +3,8 @@ services:
   wed:
     image: lalyos/lunch:v8
     environment:
-      - TITLE=Hello on Wendsday
-      - COLOR=lightgreen
+      - TITLE=${TITLE:-default}
+      - COLOR=${COLOR:-lightgray}
     ports:
       - 30002:80
       
