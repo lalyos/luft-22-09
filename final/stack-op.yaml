@@ -19,13 +19,15 @@ services:
       - 80:80
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  test:
-    image: lalyos/lunch:v10
+  vizualiser:
+    image: dockersamples/visualizer
+    ports:
+    - 8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     deploy:
       labels:
-        traefik.port: 80
-    ports:
-    - 80
+        traefik.port: 8080
 
 networks:
   traefik:
