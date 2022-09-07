@@ -17,8 +17,9 @@ services:
       - ./sql:/docker-entrypoint-initdb.d
       - vipvol:/var/lib/postgresql/data
 
-  dinner:
-    image: lunch:v5
+  front:
+    image: lalyos/lunch:v8
+    # build: .
     ports:
       - 80
     environment:
