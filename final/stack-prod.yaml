@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  coffee:
+    image: lalyos/lunch:v10
+    ports:
+      - 80
+    environment:
+    - TITLE_FILE=/title
+    - COLOR_FILE=/color
+    - BODY_FILE=/body
+    configs:
+    - source: title
+      target: /title
+    - source: color
+      target: /color
+    - source: body
+      target: /body
+    deploy:
+      labels:
+        traefik.port: 80
+        trigger.deploy: now
+
+configs:
+  body: 
+    external: true
+    name: prod-body
+  color:
+    external: true
+    name: prod-color
+  title: 
+    external: true
+    name: prod-title-end
+
+networks:
+  default:
+    external: true
+    name: operation_default
