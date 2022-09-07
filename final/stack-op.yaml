@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  traefik:
+    image: traefik:1.7-alpine
+    restart: always
+    command:
+      - --retry
+      - --debug
+      - --rest
+      - --docker.domain=${DOMAIN:-lvh.me}
+      # - --docker.network=traefik
+      - --docker.swarmmode
+      - --api.dashboard
+    deploy:
+      labels:
+        traefik.frontend.rule: Host:traefik.${DOMAIN:-lvh.me}
+        traefik.port: 8080
+        traefik.docker.network: operation_default
+    # labels:
+      # - "traefik.frontend.rule=Host:traefik.${DOMAIN:-lvh.me}"
+      # - "traefik.port=8080"
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  test:
+    image: lalyos/lunch:v10
+    # labels:
+    #   - "traefik.port=80"
+    deploy:
+      labels:
+        traefik.port: 80
+        traefik.docker.network: operation_default
+    ports:
+    - 80
+
+networks:
+  traefik:
